@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
   <a href="/home" class="brand-link">
-    <img src="assets/dist/img/itech.jpg" alt="Logo" class="brand-image img-fluid" style="">
+    <img src="assets/dist/img/itech.jpg" alt="Logo" class="brand-image img-fluid">
     <span class="brand-text font-weight-light"><b>E-Surat</b></span>
   </a>
 
@@ -32,6 +32,12 @@
               <a href="/dosen" class="nav-link">
                   <i class="nav-icon fas fa-solid fa-file"></i>
                   <p>Surat Dosen</p>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a href="/laporan" class="nav-link">
+                  <i class="nav-icon fas fa-solid fa-folder"></i>
+                  <p>Laporan</p>
               </a>
           </li>
       </ul>

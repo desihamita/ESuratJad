@@ -41,13 +41,14 @@
             }
         });
     }
-
-    // Check for a session message
-    @if($message = Session::get('failed'))
-        Swal.fire({
-            title: "Error!",
-            text: '{{ $message }}',
-            icon: "error"
-        });
-    @endif
 </script>
+
+@if ($message = Session::get('failed'))
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Failed',
+      text: '{{ $message }}'
+    });
+  </script>
+@endif

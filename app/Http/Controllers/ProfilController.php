@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -27,28 +28,30 @@ class ProfilController extends Controller
             'password' => 'nullable|min:8',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $user = Auth::user();
+    
+        /** @var User $user */
+        $user = Auth::user(); 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-
+    
         if ($request->filled('password')) {
             $user->password = Hash::make($request->input('password'));
         }
-
+    
         if($request->hasFile('profile_picture')) {
-            if($user->profile_picture && Storage::exists('public/profile_picture/'. $user->profile_picture)) {
-                Storage::delete('public/profile_pictures/'.$user->profile_picture);
+            if($user->profile_picture && Storage::exists('public/profile_pictures/' . $user->profile_picture)) {
+                Storage::delete('public/profile_pictures/' . $user->profile_picture);
             }
             $file = $request->file('profile_picture');
-            $filename = time().'.'.$file->getClientOriginalExtension();
+            $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/profile_pictures', $filename);
-
+    
             $user->profile_picture = $filename;
         }
-
+    
         $user->save();
-
+    
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
+    
 }

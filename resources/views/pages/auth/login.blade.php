@@ -69,11 +69,15 @@
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<script>
-    @if($message = Session::get('failed'))
-      Swal.fire('{{ $message }}');
-    @endif
-</script>
+@if ($message = Session::get('failed'))
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Failed',
+      text: '{{ $message }}'
+    });
+  </script>
+@endif
 
 </body>
 </html>

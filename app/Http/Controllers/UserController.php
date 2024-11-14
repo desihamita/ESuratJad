@@ -31,7 +31,7 @@ class UserController extends Controller
         ];
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route('dosen.index')->with('success', 'Welcome!');
+            return redirect()->route('home.index')->with('success', 'Welcome!');
         } else {
             return redirect()->route('login')->with('failed', 'Email atau password salah!');
         }
